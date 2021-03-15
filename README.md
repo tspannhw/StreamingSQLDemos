@@ -23,3 +23,9 @@ FROM energy JOIN scada ON energy.systemtime = scada.systemtime;
 
 SELECT CAST(symbol as STRING) symbol, CAST(uuid as STRING) uuid, ts, dt, open, close, high, volume, low, datetime, 'new-high' message, 'nh' alertcode, CAST(CURRENT_TIMESTAMP AS BIGINT) alerttime FROM stocks st WHERE symbol is not null and symbol <> 'null' and trim(symbol) <> '' and CAST(close as DOUBLE) > (SELECT MAX(CAST(close as DOUBLE)) FROM stocks s WHERE s.symbol = st.symbol);
 
+SELECT scada2.uuid, scada2.systemtime, scada2.temperaturef, 
+scada2.pressure, scada2.humidity, scada2.lux, scada2.proximity, 
+scada2.oxidising,scada2.reducing , scada2.nh3, 
+scada2.gasko, energy2.voltage,energy2.total,energy2.fanstatus 
+FROM energy2, scada2 
+WHERE energy2.systemtime = scada2.systemtime
