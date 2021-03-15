@@ -1,0 +1,2 @@
+# StreamingSQLDemos
+Demos on stonks
