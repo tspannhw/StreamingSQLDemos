@@ -39,3 +39,9 @@ scada2.oxidising,scada2.reducing , scada2.nh3,
 scada2.gasko, energy2.voltage,energy2.total,energy2.fanstatus 
 FROM energy2, scada2 
 WHERE energy2.systemtime = scada2.systemtime
+
+# event status
+
+select * 
+from statusevents
+where lower(description) like '%fail%' or lower(description) like '%error%'
